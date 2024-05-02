@@ -1,0 +1,59 @@
+@model vnLab.Data.Entities.Division
+
+@{
+    ViewData["Title"] = "Division infomation: " + Model.Name;
+    ViewData["Heading"] = "Division infomation: " + Model.Name;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Divisions" asp-action="Index">Division</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Division infomation: @Model.Name</li>
+    </ol>
+</nav>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Status.HasValue)
+            {
+                if (Model.Status.Value)
+                {
+                    <p class="text-success">
+                        @Html.Raw("Đang hoạt động")
+                    </p>
+                }
+                else
+                {
+                    <p class="text-danger">
+                        @Html.Raw("Dừng hoạt động")
+                    </p>
+                }
+            }
+            else
+            {
+                @Html.Raw("Không xác định")
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

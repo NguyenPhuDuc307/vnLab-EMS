@@ -1,0 +1,68 @@
+@model vnLab.Data.Entities.TimeSheet
+
+@{
+    ViewData["Title"] = "Edit time sheet: " + Model.User!.FullName + " - " + (Model.LastDayOfMoth.HasValue ?
+    Model.LastDayOfMoth.Value.ToString("dd/MM/yyyy") : "");
+    ViewData["Heading"] = "Edit time sheet: " + Model.User.FullName + " - " + (Model.LastDayOfMoth.HasValue ?
+    Model.LastDayOfMoth.Value.ToString("dd/MM/yyyy") : "");
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="TimeSheets" asp-action="Index">Time sheet</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit time sheet: @Model.User.FullName -
+            @Model.LastDayOfMoth?.ToString("dd/MM/yyyy")</li>
+    </ol>
+</nav>
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label class="control-label">User</label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NghiKhongPhep" class="control-label"></label>
+                <input asp-for="NghiKhongPhep" class="form-control" />
+                <span asp-validation-for="NghiKhongPhep" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="LastDayOfMoth" class="control-label"></label>
+                <input asp-for="LastDayOfMoth" class="form-control" />
+                <span asp-validation-for="LastDayOfMoth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NghiCoPhep" class="control-label"></label>
+                <input asp-for="NghiCoPhep" class="form-control" />
+                <span asp-validation-for="NghiCoPhep" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="TongNgayCong" class="control-label"></label>
+                <input asp-for="TongNgayCong" class="form-control" />
+                <span asp-validation-for="TongNgayCong" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

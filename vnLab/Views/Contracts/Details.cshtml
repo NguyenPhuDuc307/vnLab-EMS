@@ -1,0 +1,150 @@
+@model vnLab.Data.Entities.Contract
+
+@{
+    ViewData["Title"] = "Contract infomation: " + Model.Number;
+    ViewData["Heading"] = "Contract infomation: " + Model.Number;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Contracts" asp-action="Index">Contract</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Contract infomation: @Model.Number</li>
+    </ol>
+</nav>
+
+<div>
+    <dl class="row">
+        <div class="col-md-6 row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.HeSoLuong)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.HeSoLuong)
+            </dd>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="col-md-6 row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.FullName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.FullName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.Sex)
+            </dt>
+            <dd class="col-sm-8">
+                @if (Model.User!.Sex.HasValue)
+                {
+                    if (Model.User!.Sex.Value)
+                    {
+                        @Html.Raw("Nam")
+                    }
+                    else
+                    {
+                        @Html.Raw("Nữ")
+                    }
+                }
+                else
+                {
+                    @Html.Raw("Không xác định")
+                }
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.Address)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.Address)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.CCCD)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.CCCD)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.TDHV)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.TDHV)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.BHXH)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.BHXH)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.BHYT)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.BHYT)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.SoPhep)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.SoPhep)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.Position)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.Position!.Name)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.UserName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.UserName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.Email)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.Email)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.User!.PhoneNumber)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.User!.PhoneNumber)
+            </dd>
+        </div>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

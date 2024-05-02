@@ -1,0 +1,54 @@
+@model vnLab.Data.Entities.SalarySheet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>SalarySheet</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TimeSheet)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TimeSheet.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LuongChinh)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LuongChinh)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhuCap)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhuCap)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TienThuong)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TienThuong)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NetSalary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NetSalary)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

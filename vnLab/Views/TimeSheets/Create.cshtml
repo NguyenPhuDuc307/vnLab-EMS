@@ -1,0 +1,52 @@
+@model vnLab.Data.Entities.TimeSheet
+
+@{
+    ViewData["Title"] = "Create a new time sheet for all employees";
+    ViewData["Heading"] = "Create a new time sheet for all employees";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="TimeSheets" asp-action="Index">Time sheet</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create a new time sheet for all employees</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Choose Date</label>
+                <input asp-for="LastDayOfMoth" class="form-control" required />
+                <span asp-validation-for="LastDayOfMoth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="form-group">
+        <label asp-for="UserId" class="control-label">User</label>
+        <div class="row">
+            @foreach (var user in ViewBag.UserId)
+            {
+                <div class="col-md-3">
+                    <li>
+                        <a asp-controller="Users" asp-action="Details" asp-route-id="@user.Value">@user.Text</a>
+                    </li>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

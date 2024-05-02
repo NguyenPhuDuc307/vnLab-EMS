@@ -1,0 +1,46 @@
+@model vnLab.Data.Entities.TimeSheetDetail
+
+@{
+    ViewData["Title"] = "Check in";
+    ViewData["Heading"] = "Check in";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="TimeSheets" asp-action="Index">Time sheets</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Check in</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden asp-for="TimeSheetId" class="form-control" value="@ViewBag.TimeSheetId" />
+            <div class="form-group">
+                <label asp-for="TimeCheckIn" class="control-label"></label>
+                <input asp-for="TimeCheckIn" class="form-control" />
+                <span asp-validation-for="TimeCheckIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeCheckOut" class="control-label"></label>
+                <input asp-for="TimeCheckOut" class="form-control" />
+                <span asp-validation-for="TimeCheckOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

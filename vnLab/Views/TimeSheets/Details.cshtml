@@ -1,0 +1,73 @@
+@model vnLab.Data.Entities.TimeSheet
+
+@{
+    ViewData["Title"] = "Time sheet infomation: " + Model.User!.FullName + " - " + (Model.LastDayOfMoth.HasValue ?
+    Model.LastDayOfMoth.Value.ToString("dd/MM/yyyy") : "");
+    ViewData["Heading"] = "Time sheet infomation: " + Model.User.FullName + " - " + (Model.LastDayOfMoth.HasValue ?
+    Model.LastDayOfMoth.Value.ToString("dd/MM/yyyy") : "");
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="TimeSheets" asp-action="Index">Time sheet</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Time sheet infomation: @Model.User.FullName -
+            @Model.LastDayOfMoth?.ToString("dd/MM/yyyy")</li>
+    </ol>
+</nav>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastDayOfMoth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastDayOfMoth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TongNgayCong)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TongNgayCong)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NghiCoPhep)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NghiCoPhep)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NghiKhongPhep)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NghiKhongPhep)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User!.Email)
+        </dd>
+    </dl>
+</div>
+
+<div class="row">
+    @foreach (var timeSheetDetail in (List<TimeSheetDetail>)ViewData["TimeSheetDetails"]!)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="text-center badge-primary">
+                <b>@timeSheetDetail.TimeCheckIn.ToString("dd/MM/yyyy")</b>
+                <p>@timeSheetDetail.TimeCheckIn.ToString("HH:mm:ss")</p>
+            </div>
+            <div class="text-center badge-danger"><b>@timeSheetDetail.TimeCheckOut?.ToString("dd/MM/yyyy")</b>
+                <p>@timeSheetDetail.TimeCheckOut?.ToString("HH:mm:ss")</p>
+            </div>
+            <hr>
+        </div>
+    }
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
